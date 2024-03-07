@@ -25,10 +25,12 @@ PostMan:
 ### Examples
 Demo Website Translation:
 
-<video width="320" height="240" controls>
-  <source src="api/test.mp4" type="video/mp4">
-</video>
+
+
+https://github.com/SaumyaRaj188/InnoHACK_Divide_by_Zero/assets/127104671/c85a6feb-7876-4f84-989f-e41aa60de7f5
+
 
 Text Translation:
+
 ![alt text](/translation_hub/text_trans.jpg "Postman")
 
