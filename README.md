@@ -29,3 +29,6 @@ Demo Website Translation:
   <source src="api/test.mp4" type="video/mp4">
 </video>
 
+Text Translation:
+![alt text](/translation_hub/text_trans.jpg "Postman")
+
