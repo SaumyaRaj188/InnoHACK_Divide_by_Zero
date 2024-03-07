@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translation Hub</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            width: 80%;
+            max-width: 600px;
+            box-sizing: border-box; /* Added box-sizing to include padding in width calculation */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        select, input, textarea {
+            width: calc(100% - 20px); /* Adjusted width calculation to include padding */
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Added box-sizing to include padding in width calculation */
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        a {
+            display: block;
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+        a:hover {
+            background-color: #45a049;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+    <h1>Translation Hub</h1>
+
+    <!-- Translate PDF Form -->
+    <form>
+        <h2>Translate PDF</h2>
+        <label for="pdf">Browse PDF:</label>
+        <input type="file" id="pdf" accept=".pdf">
+
+        <label for="pdfLanguage">Language:</label>
+        <select id="pdfLanguage">
+            <!-- Add language options here -->
+            <option value="en">English</option>
+<option value="as">Assamese</option>
+<option value="bn">Bengali</option>
+<option value="brx">Bodo</option>
+<option value="doi">Dogri</option>
+<option value="gu">Gujarati</option>
+<option value="hi">Hindi</option>
+<option value="kn">Kannada</option>
+<option value="ks">Kashmiri</option>
+<option value="kok">Konkani</option>
+<option value="mai">Maithili</option>
+<option value="ml">Malayalam</option>
+<option value="mni">Manipuri</option>
+<option value="mr">Marathi</option>
+<option value="ne">Nepali</option>
+<option value="or">Odia</option>
+<option value="pa">Punjabi</option>
+<option value="sa">Sanskrit</option>
+<option value="sat">Santali</option>
+<option value="sd">Sindhi</option>
+<option value="ta">Tamil</option>
+<option value="te">Telugu</option>
+<option value="ur">Urdu</option>
+
+            <!-- Add more languages as needed -->
+        </select>
+        <button type="button" onclick="translatePDF()">Convert</button>
+        <textarea id="translatedPDF" rows="4" readonly></textarea>
+    </form>
+
+    <!-- Translate Image Form -->
+    <form>
+        <h2>Translate Image</h2>
+        <label for="image">Browse Image:</label>
+        <input type="file" id="image" accept=".jpg, .jpeg, .png">
+
+        <label for="imageLanguage">Language:</label>
+        <select id="imageLanguage">
+            <!-- Add language options here -->
+            <option value="en">English</option>
+<option value="as">Assamese</option>
+<option value="bn">Bengali</option>
+<option value="brx">Bodo</option>
+<option value="doi">Dogri</option>
+<option value="gu">Gujarati</option>
+<option value="hi">Hindi</option>
+<option value="kn">Kannada</option>
+<option value="ks">Kashmiri</option>
+<option value="kok">Konkani</option>
+<option value="mai">Maithili</option>
+<option value="ml">Malayalam</option>
+<option value="mni">Manipuri</option>
+<option value="mr">Marathi</option>
+<option value="ne">Nepali</option>
+<option value="or">Odia</option>
+<option value="pa">Punjabi</option>
+<option value="sa">Sanskrit</option>
+<option value="sat">Santali</option>
+<option value="sd">Sindhi</option>
+<option value="ta">Tamil</option>
+<option value="te">Telugu</option>
+<option value="ur">Urdu</option>
+
+            <!-- Add more languages as needed -->
+        </select>
+
+        <button type="button" onclick="translateImage()">Convert</button>
+        <a id="downloadImage" href="#" download style="display: none;">Download Image</a>
+    </form>
+
+    <!-- Translate Text Form -->
+    <form action="/text" method="post">
+        <h2>Translate Text</h2>
+        <label for="textInput">Text to Translate:</label>
+        <textarea id="textInput" rows="4"></textarea name="content">
+
+        <label for="textLanguage">Language:</label>
+        <select id="textLanguage" name="trans_lang">
+            <!-- Add language options here -->
+            <option value="english">English</option>
+<option value="assamese">Assamese</option>
+<option value="bengali">Bengali</option>
+<option value="bodo">Bodo</option>
+<option value="dogri">Dogri</option>
+<option value="gujarati">Gujarati</option>
+<option value="hindi">Hindi</option>
+<option value="kannada">Kannada</option>
+<option value="kashmiri">Kashmiri</option>
+<option value="konkani">Konkani</option>
+<option value="maithili">Maithili</option>
+<option value="malayalam">Malayalam</option>
+<option value="manipuri">Manipuri</option>
+<option value="marathi">Marathi</option>
+<option value="nepali">Nepali</option>
+<option value="odia">Odia</option>
+<option value="punjabi">Punjabi</option>
+<option value="sanskrit">Sanskrit</option>
+<option value="santali">Santali</option>
+<option value="sindhi">Sindhi</option>
+<option value="tamil">Tamil</option>
+<option value="telugu">Telugu</option>
+<option value="urdu">Urdu</option>
+            <!-- Add more languages as needed -->
+</select>
+            <label for="textstyle">Writting Style:</label>
+        <select id="textstyle" name="type">
+            <option value="formal">Formal</option>
+            <option value="informal">Informal</option>
+            <option value="fluent">Fluent</option>
+            <option value="creative">Creative</option>
+        </select>
+
+        <button type="button" onclick="translateText()">Convert</button>
+        <textarea id="translatedText" rows="4" readonly></textarea>
+    </form>
+    
+
+    <script>
+        async function translatePDF() {
+             console.log("calling function")
+        const apiUrl = 'http://localhost:5000/translate';
+        let data = document.getElementById('pdfLanguage').value;
+        let file = document.getElementById('pdf').files[0];
+        const formData = new FormData();
+            formData.append('file', file);
+            
+            formData.append('trans_lang', data);
+        
+        
+        response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => data.translation)
+            .catch(error => console.error('Fetch Error:',error));
+        
+        document.getElementById('translatedText').value=response;
+            // Add logic to handle PDF translation and display/download
+        }
+
+        function translateImage() {
+            // Add logic to handle Image translation and display/download
+        }
+
+        async function translateText() {
+            // Add logic to handle Text translation and display
+            console.log("calling function")
+        const apiUrl = 'http://localhost:5000/translate';
+        const postData = {
+            trans_lang: document.getElementById('textLanguage').value,
+            type: document.getElementById('textstyle').value,
+            content: document.getElementById('textInput').value
+        };
+        
+        response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(postData),
+        })
+            .then(response => response.json())
+            .then(data => data.translation)
+            .catch(error => console.error('Fetch Error:',error));
+        
+        document.getElementById('translatedText').value=response;
+        }
+    </script>
+</body>
+</html>
